@@ -2,13 +2,20 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TransactionManager {
-    Map<String, Integer> transactionList = new LinkedHashMap<>();
+    Map<String, Integer> balanceMap = new LinkedHashMap<>();
 
     ReadFile rf = new ReadFile();
 
     String[] getCSVData(String dirPath) {
-        String data = rf.readFileContentsOrNull(dirPath);
-        return data.split("\\r?\\n");
+        String[] splitData = null;
+        if (rf.readFileContentsOrNull(dirPath) != null) {
+            String data = rf.readFileContentsOrNull(dirPath);
+            splitData = data.split("\\r?\\n");
+        } else {
+            System.out.println("Не найден файл с данными");
+            System.exit(0);
+        }
+        return splitData;
     }
 
     void calculateBalance(String[] lines, String delimiter) {
@@ -17,35 +24,35 @@ public class TransactionManager {
             String[] column = lines[i].split(delimiter);
             if (i == 0) {
                 names.addAll(Arrays.asList(column).subList(2, column.length));
-                names.forEach(name -> transactionList.put(name, 0));
+                names.forEach(name -> balanceMap.put(name.trim(), 0));
             } else {
                 int sum = 0;
                 for (int j = 2; j < column.length; j++) {
-                    if (!column[j].isEmpty()) {
-                        sum += Integer.parseInt(column[j]);
-                        transactionList.put(names.get(j - 2), transactionList.get(names.get(j - 2)) - Integer.parseInt(column[j]));
+                    if (!column[j].isBlank()) {
+                        sum += Integer.parseInt(column[j].trim());
+                        balanceMap.put(names.get(j - 2).trim(), balanceMap.get(names.get(j - 2).trim()) - Integer.parseInt(column[j].trim()));
                     }
                 }
-                transactionList.put(column[0], (sum + transactionList.get(column[0])));
+                balanceMap.put(column[0].trim(), (sum + balanceMap.get(column[0].trim())));
             }
         }
     }
 
     Map<String, Integer> sortMaxToMin() {
-        return transactionList.entrySet().stream()
+        return balanceMap.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 
     Map<String, Integer> sortMinToMax() {
-        return transactionList.entrySet().stream()
+        return balanceMap.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 
     void calculateTransactions() {
-        LinkedHashMap<String, Integer> debtorsSortedMap = new LinkedHashMap<>();
-        LinkedHashMap<String, Integer> creditorsSortedMap = new LinkedHashMap<>();
+        Map<String, Integer> debtorsSortedMap = new LinkedHashMap<>();
+        Map<String, Integer> creditorsSortedMap = new LinkedHashMap<>();
         sortMaxToMin().forEach((k, v) -> {
             if (v > 0) {
                 creditorsSortedMap.put(k, v);

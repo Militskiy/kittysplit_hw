@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d17e84c2-0505-452d-8d0b-e2c0d36284c6" name="Changes" comment="initial commit">
+    <list default="true" id="d17e84c2-0505-452d-8d0b-e2c0d36284c6" name="Changes" comment="refactoring: changed updated calculateTransactions if statements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/input.csv" beforeDir="false" afterPath="$PROJECT_DIR$/input/input.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +80,9 @@
       <workItem from="1656241250115" duration="7001000" />
       <workItem from="1656257543418" duration="7240000" />
       <workItem from="1656268226041" duration="2265000" />
+      <workItem from="1656308412817" duration="2586000" />
+      <workItem from="1656317337105" duration="335000" />
+      <workItem from="1656317808545" duration="1419000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1656268865479</created>
