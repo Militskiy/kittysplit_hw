@@ -42,14 +42,14 @@ public class TransactionManager {
     public void calculateTransactions() {
         Map<String, Integer> debtorsSortedMap = new LinkedHashMap<>();
         Map<String, Integer> creditorsSortedMap = new LinkedHashMap<>();
-        sortMaxToMin().forEach((k, v) -> {
-            if (v > 0) {
-                creditorsSortedMap.put(k, v);
+        sortMaxToMin().forEach((name, sum) -> {
+            if (sum > 0) {
+                creditorsSortedMap.put(name, sum);
             }
         });
-        sortMinToMax().forEach((k, v) -> {
-            if (v < 0) {
-                debtorsSortedMap.put(k, v);
+        sortMinToMax().forEach((name, sum) -> {
+            if (sum < 0) {
+                debtorsSortedMap.put(name, sum);
             }
         });
         for (String k : creditorsSortedMap.keySet()) {
