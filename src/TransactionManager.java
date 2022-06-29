@@ -2,11 +2,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TransactionManager {
-    Map<String, Integer> balanceMap = new LinkedHashMap<>();
+    private final Map<String, Integer> balanceMap = new LinkedHashMap<>();
 
-    ReadFile rf = new ReadFile();
+    private final ReadFile rf = new ReadFile();
 
-    String[] getCSVData(String dirPath) {
+    public String[] getCSVData(String dirPath) {
         String[] splitData = null;
         if (rf.readFileContentsOrNull(dirPath) != null) {
             String data = rf.readFileContentsOrNull(dirPath);
@@ -18,7 +18,7 @@ public class TransactionManager {
         return splitData;
     }
 
-    void calculateBalance(String[] lines, String delimiter) {
+    public void calculateBalance(String[] lines, String delimiter) {
         List<String> names = new ArrayList<>();
         for (int i = 0; i < lines.length; i++) {
             String[] column = lines[i].split(delimiter);
@@ -39,19 +39,7 @@ public class TransactionManager {
         }
     }
 
-    Map<String, Integer> sortMaxToMin() {
-        return balanceMap.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-    }
-
-    Map<String, Integer> sortMinToMax() {
-        return balanceMap.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-    }
-
-    void calculateTransactions() {
+    public void calculateTransactions() {
         Map<String, Integer> debtorsSortedMap = new LinkedHashMap<>();
         Map<String, Integer> creditorsSortedMap = new LinkedHashMap<>();
         sortMaxToMin().forEach((k, v) -> {
@@ -90,5 +78,17 @@ public class TransactionManager {
                 creditorsSortedMap.put(k, update);
             }
         }
+    }
+
+    private Map<String, Integer> sortMaxToMin() {
+        return balanceMap.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+    }
+
+    private Map<String, Integer> sortMinToMax() {
+        return balanceMap.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 }

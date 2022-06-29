@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d17e84c2-0505-452d-8d0b-e2c0d36284c6" name="Changes" comment="feature: added file check, added support for extra whitespaces in input data">
+    <list default="true" id="d17e84c2-0505-452d-8d0b-e2c0d36284c6" name="Changes" comment="fix: fixed console output bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/input2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/input/input2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +82,7 @@
       <workItem from="1656317808545" duration="1419000" />
       <workItem from="1656322149498" duration="2826000" />
       <workItem from="1656345252978" duration="8000" />
-      <workItem from="1656506898988" duration="2183000" />
+      <workItem from="1656506898988" duration="3713000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1656268865479</created>
@@ -94,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656268865479</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix: fixed console output bug">
+      <created>1656509242219</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656509242219</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,22 +119,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initial commit" />
     <MESSAGE value="feature: added file check, added support for extra whitespaces in input data" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: added file check, added support for extra whitespaces in input data" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>6</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/TransactionManager.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="fix: fixed console output bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed console output bug" />
   </component>
 </project>
