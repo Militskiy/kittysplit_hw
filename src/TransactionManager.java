@@ -30,7 +30,8 @@ public class TransactionManager {
                 for (int j = 2; j < column.length; j++) {
                     if (!column[j].isBlank()) {
                         sum += Integer.parseInt(column[j].trim());
-                        balanceMap.put(names.get(j - 2).trim(), balanceMap.get(names.get(j - 2).trim()) - Integer.parseInt(column[j].trim()));
+                        balanceMap.put(names.get(j - 2).trim(), balanceMap.get(names.get(j - 2)
+                                .trim()) - Integer.parseInt(column[j].trim()));
                     }
                 }
                 balanceMap.put(column[0].trim(), (sum + balanceMap.get(column[0].trim())));
@@ -70,17 +71,18 @@ public class TransactionManager {
                     int updateDebtor = debtorsSortedMap.get(key);
                     if (update != 0 && updateDebtor != 0) {
                         if (update.equals(-updateDebtor)) {
+                            System.out.println(key + "->" + k + ":" + update);
                             update = 0;
                             updateDebtor = 0;
-                            System.out.println(key + "->" + k + ":" + -debtorsSortedMap.get(key));
+
                         } else if (update > -updateDebtor) {
+                            System.out.println(key + "->" + k + ":" + -updateDebtor);
                             update += updateDebtor;
                             updateDebtor = 0;
-                            System.out.println(key + "->" + k + ":" + -debtorsSortedMap.get(key));
                         } else if (update < -updateDebtor) {
                             updateDebtor += update;
+                            System.out.println(key + "->" + k + ":" + update);
                             update = 0;
-                            System.out.println(key + "->" + k + ":" + creditorsSortedMap.get(k));
                         }
                     }
                     debtorsSortedMap.put(key, updateDebtor);
