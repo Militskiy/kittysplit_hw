@@ -52,30 +52,30 @@ public class TransactionManager {
                 debtorsSortedMap.put(name, sum);
             }
         });
-        for (String k : creditorsSortedMap.keySet()) {
-            while (!creditorsSortedMap.get(k).equals(0)) {
-                Integer update = creditorsSortedMap.get(k);
-                for (String key : debtorsSortedMap.keySet()) {
-                    int updateDebtor = debtorsSortedMap.get(key);
-                    if (update != 0 && updateDebtor != 0) {
-                        if (update.equals(-updateDebtor)) {
-                            System.out.println(key + "->" + k + ":" + update);
-                            update = 0;
-                            updateDebtor = 0;
+        for (String creditorName : creditorsSortedMap.keySet()) {
+            while (!creditorsSortedMap.get(creditorName).equals(0)) {
+                Integer creditorUpdatedSum = creditorsSortedMap.get(creditorName);
+                for (String debtorName : debtorsSortedMap.keySet()) {
+                    int debtorUpdatedSum = debtorsSortedMap.get(debtorName);
+                    if (creditorUpdatedSum != 0 && debtorUpdatedSum != 0) {
+                        if (creditorUpdatedSum.equals(-debtorUpdatedSum)) {
+                            System.out.println(debtorName + "->" + creditorName + ":" + creditorUpdatedSum);
+                            creditorUpdatedSum = 0;
+                            debtorUpdatedSum = 0;
 
-                        } else if (update > -updateDebtor) {
-                            System.out.println(key + "->" + k + ":" + -updateDebtor);
-                            update += updateDebtor;
-                            updateDebtor = 0;
-                        } else if (update < -updateDebtor) {
-                            updateDebtor += update;
-                            System.out.println(key + "->" + k + ":" + update);
-                            update = 0;
+                        } else if (creditorUpdatedSum > -debtorUpdatedSum) {
+                            System.out.println(debtorName + "->" + creditorName + ":" + -debtorUpdatedSum);
+                            creditorUpdatedSum += debtorUpdatedSum;
+                            debtorUpdatedSum = 0;
+                        } else if (creditorUpdatedSum < -debtorUpdatedSum) {
+                            debtorUpdatedSum += creditorUpdatedSum;
+                            System.out.println(debtorName + "->" + creditorName + ":" + creditorUpdatedSum);
+                            creditorUpdatedSum = 0;
                         }
                     }
-                    debtorsSortedMap.put(key, updateDebtor);
+                    debtorsSortedMap.put(debtorName, debtorUpdatedSum);
                 }
-                creditorsSortedMap.put(k, update);
+                creditorsSortedMap.put(creditorName, creditorUpdatedSum);
             }
         }
     }
